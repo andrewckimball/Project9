@@ -1,4 +1,5 @@
 ﻿using AndrewHomework3.Models;
+//using AndrewHomework3.Models.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,10 +13,13 @@ namespace AndrewHomework3.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private ProjectDbContext context { get; set; }
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ProjectDbContext context)
         {
             _logger = logger;
+            this.context = context;
+
         }
 
         public IActionResult Index()
@@ -39,7 +43,8 @@ namespace AndrewHomework3.Controllers
         {
             if (ModelState.IsValid)
             {
-                TempStorage.AddApplication(appResponse);
+                context.ProjectModel.Add(appResponse);
+                context.SaveChanges();
                 return View("Confirmation", appResponse);
             }
 
@@ -48,11 +53,14 @@ namespace AndrewHomework3.Controllers
 
         //public IActionResult List()
         //{
-          //  return View(TempStorage.Applications);
+        //  return View(TempStorage.Applications);
         //}
+
         public ViewResult List()
         {
-            return View(TempStorage.Applications.Where(r => r.Title != "Independence Day"));
+            var movieList = context.ProjectModel.ToList();
+            //return View(TempStorage.Applications.Where(r => r.Title != "Independence Day"));
+            return View(movieList.Where(r => r.Title != "Independence Day"));
         }
 
 

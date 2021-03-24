@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AndrewHomework3.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace AndrewHomework3
 {
@@ -24,6 +26,11 @@ namespace AndrewHomework3
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddDbContext<ProjectDbContext>(options =>
+            {
+                options.UseSqlite(Configuration["ConnectionStrings:Homework3Connection"]);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -8,7 +8,32 @@
 @model IEnumerable<AndrewHomework3.Models.MovieModel>
 
 <br />
-<div>
+<table class="table table-striped table-hover">
+
+    <tr>
+        <th>Category</th>
+        <th>Title</th>
+        <th>Year</th>
+        <th>Edited</th>
+        <th>Lent To</th>
+        <th>Notes</th>
+    </tr>
+
+    @foreach (MovieModel x in Model)
+    {
+        <tr>
+            <td>@x.Category</td>
+            <td>@x.Title</td>
+            <td>@x.Year</td>
+            <td>@x.Rating</td>
+            <td>@x.LentTo</td>
+            <td>@x.Notes</td>
+        </tr>
+
+    }
+
+</table>
+@*<div>
     <h4>Here are the individuals currently on the waitlist</h4><br />
     <table>
         <thead>
@@ -30,4 +55,4 @@
             }
         </tbody>
     </table>
-</div>
+</div>*@

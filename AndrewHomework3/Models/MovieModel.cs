@@ -8,6 +8,9 @@ namespace AndrewHomework3.Models
 {
     public class MovieModel
     {
+        [Key]
+        public int MovieID { get; set; }
+
         [Required(ErrorMessage = "Please insert the category")]
         public string Category { get; set; }
 
