@@ -56,7 +56,7 @@ namespace AndrewHomework3.Controllers
         public ViewResult List()
         {
             //Set the movieList variable to the ProjectModel, display to a list
-            var movieList = context.ProjectModel.ToList();
+            List<MovieModel> movieList = context.ProjectModel.ToList();  //or var movieList = ... (same thing)
             return View(movieList.Where(r => r.Title.ToUpper() != "INDEPENDENCE DAY")); //Model exludes "Independence Day" title from being stored
         }
 
@@ -64,8 +64,7 @@ namespace AndrewHomework3.Controllers
         //Controller handling the updating of the models
         public IActionResult Update(int movieid) //Passing in the movieid
         {
-            //MovieModel movie = context.ProjectModel.Where(e => e.MovieID == movieid).FirstOrDefault(); *Same logic as line 68*
-            var movieList = context.ProjectModel.Where(e => e.MovieID == movieid).FirstOrDefault();
+            MovieModel movieList = context.ProjectModel.Where(e => e.MovieID == movieid).FirstOrDefault(); 
             return View(movieList);
         }
 
@@ -82,11 +81,14 @@ namespace AndrewHomework3.Controllers
             {
                 //On post, update each attribute of the model
                 context.ProjectModel.Where(e => e.MovieID == movieid).FirstOrDefault().Category = movie.Category;
+                context.ProjectModel.Where(e => e.MovieID == movieid).FirstOrDefault().Title = movie.Title;
                 context.ProjectModel.Where(e => e.MovieID == movieid).FirstOrDefault().Year = movie.Year;
+                context.ProjectModel.Where(e => e.MovieID == movieid).FirstOrDefault().Director = movie.Director;
                 context.ProjectModel.Where(e => e.MovieID == movieid).FirstOrDefault().Rating = movie.Rating;
+                context.ProjectModel.Where(e => e.MovieID == movieid).FirstOrDefault().Edited = movie.Edited;
                 context.ProjectModel.Where(e => e.MovieID == movieid).FirstOrDefault().LentTo = movie.LentTo;
                 context.ProjectModel.Where(e => e.MovieID == movieid).FirstOrDefault().Notes = movie.Notes;
-                context.ProjectModel.Where(e => e.MovieID == movieid).FirstOrDefault().Title = movie.Title;
+
 
                 //Saving changes to database
                 context.SaveChanges();
@@ -99,8 +101,8 @@ namespace AndrewHomework3.Controllers
         [HttpPost]
         public IActionResult Delete(int movieid)
         {
-            //MovieModel movie = context.ProjectModel.Where(e => e.MovieID == movieid).FirstOrDefault(); *Same logic as line 92*
-            var movieList = context.ProjectModel.Where(e => e.MovieID == movieid).FirstOrDefault();
+            //Deleting the movie that corresponds with the matching MovieID from the "MovieModel" model
+            MovieModel movieList = context.ProjectModel.Where(e => e.MovieID == movieid).FirstOrDefault(); //or var movieList = ... (same thing)
             context.ProjectModel.Remove(movieList);
             context.SaveChanges();
             return RedirectToAction("List");

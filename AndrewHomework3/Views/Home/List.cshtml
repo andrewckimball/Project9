@@ -31,7 +31,18 @@
             <td>@x.Year</td>
             <td>@x.Director</td>
             <td>@x.Rating</td>
-            <td>@x.Edited</td>
+            @if (x.Edited == true)
+            {
+                <td>Yes</td>
+            }
+            else if (x.Edited == false)
+            {
+                <td>No</td>
+            }
+            else
+            {
+                <td></td>
+            }
             <td>@x.LentTo</td>
             <td>@x.Notes</td>
             <!--Update button-->
@@ -39,7 +50,7 @@
             <td>
                 <form asp-action="Update" method="get">
                     <input type="hidden" name="movieid" value="@x.MovieID" />
-                    <button class="btn-secondary">Update</button>
+                    <button class="btn-success">Update</button>
                 </form>
             </td>
             <!--Delete button-->
@@ -54,3 +65,10 @@
     }
 
 </table>
+<br />
+
+<div>
+    <a class="elements btn btn-info mt-3 mb-5" asp-controller="Home" asp-action="MovieApplication">Add Another Movie</a>
+</div>
+
+
