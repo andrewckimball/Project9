@@ -1,23 +1,24 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿<!--View for inputing movie information-->
+
 @{
     ViewBag.Title = "Add A Movie";
 }
 
+<!--Bringin in MovieModel to this view-->
 @model MovieModel
 
 
 
+<!--Form to input the movie data-->
 <form asp-action="MovieApplication" method="post">
     <br />
     <h6>Input movie information below</h6>
     <br />
 
-    @*Form for movie data*@
     <div class="form-group">
         <label asp-for="Category">Category: </label>
         <input asp-for="Category" />
+        <!--Validation for each div-->
         <div>@Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })</div>
 
     </div>

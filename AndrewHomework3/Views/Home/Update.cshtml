@@ -1,6 +1,5 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿<!--View for updating the model. This view prepopulates the existing data, so the user can change to his/her preference-->
+
 @{
     ViewBag.Title = "Update Movie";
 }
@@ -8,16 +7,16 @@
 @model MovieModel
 
 
-
+<!--Form for movie data-->
 <form method="post">
     <br />
     <h6>Update movie information below</h6>
     <br />
 
-    @*Form for movie data*@
     <div class="form-group">
         <label asp-for="Category">Category: </label>
         <input asp-for="Category" />
+        <!--Validation message if user inputs incorrect information-->
         <div>@Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })</div>
 
     </div>

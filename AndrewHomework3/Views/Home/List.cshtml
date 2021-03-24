@@ -1,10 +1,10 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿<!--View displays the movies that are recorded in the databsse-->
+
 @{
     ViewBag.Title = "Movie List";
 }
 
+<!--Brings in the movie models-->
 @model IEnumerable<AndrewHomework3.Models.MovieModel>
 
 <br />
@@ -14,6 +14,8 @@
         <th>Category</th>
         <th>Title</th>
         <th>Year</th>
+        <th>Director</th>
+        <th>Rating</th>
         <th>Edited</th>
         <th>Lent To</th>
         <th>Notes</th>
@@ -27,14 +29,24 @@
             <td>@x.Category</td>
             <td>@x.Title</td>
             <td>@x.Year</td>
+            <td>@x.Director</td>
             <td>@x.Rating</td>
+            <td>@x.Edited</td>
             <td>@x.LentTo</td>
             <td>@x.Notes</td>
-            <td><a asp-action="Update" asp-route-movieid="@x.MovieID">Update</a></td>
+            <!--Update button-->
+            @*<td><a asp-action="Update" asp-route-movieid="@x.MovieID">Update</a></td>*@
+            <td>
+                <form asp-action="Update" method="get">
+                    <input type="hidden" name="movieid" value="@x.MovieID" />
+                    <button class="btn-secondary">Update</button>
+                </form>
+            </td>
+            <!--Delete button-->
             <td>
                 <form asp-action="Delete" method="post">
-                    <input type="hidden" name="movieid" value="@x.MovieID" />
-                    <button type="submit">Delete</button>
+                    <input type="hidden" name="movieid" value="@x.MovieID" />  <!--name "movieid" is being passed to controller-->
+                    <button type="submit" class="btn-danger">Delete</button>
                 </form>
             </td>
         </tr>
@@ -42,26 +54,3 @@
     }
 
 </table>
-@*<div>
-    <h4>Here are the individuals currently on the waitlist</h4><br />
-    <table>
-        <thead>
-            <tr><th>Category</th><th>Title</th><th>Year</th><th>Rating</th><th>Edited</th><th>Lent To</th><th>Notes</th></tr>
-        </thead>
-
-        <tbody>
-            @foreach (AndrewHomework3.Models.MovieModel x in Model)
-            {
-                <tr>
-                    <td>@x.Category</td>
-                    <td>@x.Title</td>
-                    <td>@x.Year</td>
-                    <td>@x.Rating</td>
-                    <td>@x.Edited</td>
-                    <td>@x.LentTo</td>
-                    <td>@x.Notes</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>*@

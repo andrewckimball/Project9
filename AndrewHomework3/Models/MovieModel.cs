@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -8,13 +9,14 @@ namespace AndrewHomework3.Models
 {
     public class MovieModel
     {
+        //Creating movie model, with each category and the corresponding attributes
         [Key]
         public int MovieID { get; set; }
 
         [Required(ErrorMessage = "Please insert the category")]
         public string Category { get; set; }
 
-        [Required(ErrorMessage = "Please movie title")]
+        [Required(ErrorMessage = "Please enter a movie title")]
         public string Title { get; set; }
 
         [Required(ErrorMessage ="Please insert a valid year")]

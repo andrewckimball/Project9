@@ -13,7 +13,7 @@ namespace AndrewHomework3.Models
         {
 
         }
-
+        //Set of MovieModels
         public DbSet<MovieModel> ProjectModel { get; set; }
     }
 }
