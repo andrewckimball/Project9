@@ -171,3 +171,4 @@ C:\Users\andrewkimball\source\repos\AndrewHomework3\AndrewHomework3\bin\Debug\ne
 C:\Users\andrewkimball\source\repos\AndrewHomework3\AndrewHomework3\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\andrewkimball\source\repos\AndrewHomework3\AndrewHomework3\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\andrewkimball\source\repos\AndrewHomework3\AndrewHomework3\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\andrewkimball\source\repos\AndrewHomework3\AndrewHomework3\obj\Debug\netcoreapp3.1\Razor\Views\Home\Update.cshtml.g.cs

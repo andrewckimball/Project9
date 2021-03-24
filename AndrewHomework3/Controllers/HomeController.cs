@@ -51,19 +51,42 @@ namespace AndrewHomework3.Controllers
             return View();
         }
 
-        //public IActionResult List()
-        //{
-        //  return View(TempStorage.Applications);
-        //}
-
         public ViewResult List()
         {
             var movieList = context.ProjectModel.ToList();
-            //return View(TempStorage.Applications.Where(r => r.Title != "Independence Day"));
             return View(movieList.Where(r => r.Title != "Independence Day"));
         }
 
 
+        //Trying to update the models...
+        public IActionResult Update(int movieid)
+        {
+            MovieModel movie = context.ProjectModel.Where(e => e.MovieID == movieid).FirstOrDefault();
+            return View(movie);
+        }
+
+        [HttpPost]
+        public IActionResult Update(MovieModel movie, int movieid)
+        {
+            context.ProjectModel.Where(e => e.MovieID == movieid).FirstOrDefault().Category = movie.Category;
+            context.ProjectModel.Where(e => e.MovieID == movieid).FirstOrDefault().Year = movie.Year;
+            context.ProjectModel.Where(e => e.MovieID == movieid).FirstOrDefault().Rating = movie.Rating;
+            context.ProjectModel.Where(e => e.MovieID == movieid).FirstOrDefault().LentTo = movie.LentTo;
+            context.ProjectModel.Where(e => e.MovieID == movieid).FirstOrDefault().Notes = movie.Notes;
+            context.ProjectModel.Where(e => e.MovieID == movieid).FirstOrDefault().Title = movie.Title;
+
+            context.SaveChanges();
+            return RedirectToAction("List"); //not sure about this one yet
+        }
+
+        [HttpPost]
+        public IActionResult Delete(int movieid)
+        {
+            MovieModel movie = context.ProjectModel.Where(e => e.MovieID == movieid).FirstOrDefault();
+            context.ProjectModel.Remove(movie);
+            context.SaveChanges();
+            return RedirectToAction("List");
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

@@ -17,6 +17,8 @@
         <th>Edited</th>
         <th>Lent To</th>
         <th>Notes</th>
+        <th></th>
+        <th></th>
     </tr>
 
     @foreach (MovieModel x in Model)
@@ -28,6 +30,13 @@
             <td>@x.Rating</td>
             <td>@x.LentTo</td>
             <td>@x.Notes</td>
+            <td><a asp-action="Update" asp-route-movieid="@x.MovieID">Update</a></td>
+            <td>
+                <form asp-action="Delete" method="post">
+                    <input type="hidden" name="movieid" value="@x.MovieID" />
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
         </tr>
 
     }
